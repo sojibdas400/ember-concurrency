@@ -1,20 +1,16 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
+import { task } from 'ember-concurrency';
 import getRandomNumber from '../utils/get-random-number';
 
 export default class DemoOneComponent extends Component {
-  @tracked
-  displayNumber = null;
-
-  @tracked
-  isLoading = false;
-
   @action
   async getRandNumber() {
-    this.isLoading = true;
-    const randNum = await getRandomNumber();
-    this.displayNumber = randNum;
-    this.isLoading = false;
+    this.getNumberTask.perform();
+  }
+
+  @task *getNumberTask() {
+    return yield getRandomNumber();
   }
 }

@@ -2,8 +2,8 @@
   Get random number
 </button>
 
-{{#if this.isLoading}}
+{{#if this.getNumberTask.isRunning}}
   <p>loading ....</p>
 {{else}}
-  <h3>{{this.displayNumber}}</h3>
+  <h3>{{this.getNumberTask.last.value}}</h3>
 {{/if}}
