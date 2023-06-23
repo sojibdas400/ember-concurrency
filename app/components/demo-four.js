@@ -11,7 +11,11 @@ export default class DemoOneComponent extends Component {
   }
 
   @task({ keepLatest: true }) *getNumberTask() {
-    return yield getRandomNumber();
+    const randNum = yield getRandomNumber();
+    if (randNum > 50) {
+      throw new Error('something went wrong');
+    }
+    return randNum;
   }
 
   @action handleCancel() {
