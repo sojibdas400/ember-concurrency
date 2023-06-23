@@ -10,7 +10,7 @@ export default class DemoOneComponent extends Component {
     this.getNumberTask.perform();
   }
 
-  @task({ drop: true }) *getNumberTask() {
+  @task({ keepLatest: true }) *getNumberTask() {
     return yield getRandomNumber();
   }
 }
